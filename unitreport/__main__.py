@@ -1,12 +1,13 @@
-import argparse
-import jinja2
-import unittest
-import markdown
-import datetime
 import sys
+import argparse
+import datetime
 import logging
+import unittest
 
-import unitreport
+import jinja2
+import markdown
+
+from .decorators import FIGURES
 
 logger = logging.getLogger(__name__)
 
@@ -27,9 +28,7 @@ def discover_and_run(pattern: str = "test*.py", templates_dir: str = "templates"
     env.filters["markdown"] = markdown.markdown
     template = env.get_template("index.html")
     # generate report
-    html = template.render(
-        figures=unitreport.FIGURES, date=datetime.datetime.now().ctime()
-    )
+    html = template.render(figures=FIGURES, date=datetime.datetime.now().ctime())
     # save html
     with open("report.html", "w") as f:
         f.write(html)
