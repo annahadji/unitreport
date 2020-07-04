@@ -7,6 +7,7 @@ from typing import Dict, Callable, Optional, Tuple
 import matplotlib
 import matplotlib.pyplot as plt
 
+# assume that one report will be generated
 FIGURES: Dict[str, Dict[str, str]] = dict()
 logger = logging.getLogger(__name__)
 
