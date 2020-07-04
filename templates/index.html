@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Unit Report</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      {% include 'main.css' %}
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h1>Generated unit report</h1>
+      <h2>{{ date }}</h2>
+      <h2>Content</h2>
+      <div class="figures">
+        {% for fname, figure in figures.items() if figure.type == "plot" %}
+        <figure>
+          {{ figure.content | safe }}
+          <figcaption>
+            <span>Figure {{loop.index}}. </span>{{ figure.description | markdown
+            }}
+          </figcaption>
+        </figure>
+        {% endfor %}
+        {% for fname, figure in figures.items() if figure.type == "table" %}
+        <figure>
+          {{ figure.content | safe }}
+          <figcaption>
+            <span>Table {{loop.index}}. </span>{{ figure.description | markdown
+            }}
+          </figcaption>
+        </figure>
+        {% endfor %}
+        {% for fname, figure in figures.items() if figure.type == "html" %}
+        <figure>
+          {{ figure.content | safe }}
+          <figcaption>
+            <span>Generic {{loop.index}}. </span>{{ figure.description | markdown
+            }}
+          </figcaption>
+        </figure>
+        {% endfor %}
+      </div>
+    </div>
+  </body>
+</html>
