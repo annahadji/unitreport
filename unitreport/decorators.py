@@ -5,6 +5,9 @@ import logging
 from typing import Dict, Callable, Optional, Tuple, TypeVar
 
 import matplotlib
+
+# render matplotlib figures to file, not to window
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 

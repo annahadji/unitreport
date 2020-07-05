@@ -7,10 +7,6 @@ import unittest
 
 import jinja2
 import markdown
-import matplotlib
-
-if __name__ == "__main__":
-    matplotlib.use("Agg")
 
 from .decorators import FIGURES
 
