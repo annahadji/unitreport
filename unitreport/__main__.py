@@ -1,3 +1,4 @@
+import pathlib
 import sys
 import argparse
 import datetime
@@ -33,13 +34,15 @@ def discover_and_run(pattern: str = "test*.py", templates_dir: str = "templates"
 
 
 if __name__ == "__main__":
+    default_templates_dir = str(pathlib.Path(__file__).parent / "templates")
+
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "--pattern", default="test*.py", help="File patterns to discover test cases in."
     )
     parser.add_argument(
         "--templates_dir",
-        default="templates",
+        default=default_templates_dir,
         help="Path to jinja2 templates directory including index.html and main.css",
     )
     args = parser.parse_args()
