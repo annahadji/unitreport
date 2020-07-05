@@ -27,9 +27,7 @@ def discover_and_run(pattern: str = "test*.py", templates_dir: str = "templates"
     env = jinja2.Environment(loader=jinja2.FileSystemLoader(templates_dir))
     env.filters["markdown"] = markdown.markdown
     template = env.get_template("index.html")
-    # generate report
     html = template.render(figures=FIGURES, date=datetime.datetime.now().ctime())
-    # save html
     with open("report.html", "w") as f:
         f.write(html)
 
