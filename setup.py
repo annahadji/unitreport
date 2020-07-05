@@ -6,7 +6,7 @@ with open("README.md", "r") as f:
 
 setuptools.setup(
     name="unitreport",
-    version="0.0.1",
+    version="0.0.2",
     author="annahadji",
     author_email="annahadji@users.noreply.github.com",
     description="A small unittest-based tool for generating single page html reports in Python.",
@@ -15,7 +15,7 @@ setuptools.setup(
     keywords="static unittest report generator Markdown plots tables",
     url="https://github.com/annahadji/unitreport",
     packages=["unitreport"],
-    include_package_data=True,
+    package_data={"unitreport": ["templates/**"]},
     classifiers=[
         "Development Status :: 4 - Beta",
         "License :: OSI Approved :: MIT License",
