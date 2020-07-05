@@ -7,6 +7,7 @@ import unittest
 
 import jinja2
 import markdown
+import matplotlib
 
 from .decorators import FIGURES
 
@@ -34,6 +35,7 @@ def discover_and_run(pattern: str = "test*.py", templates_dir: str = "templates"
 
 
 if __name__ == "__main__":
+    matplotlib.use("Agg")
     default_templates_dir = str(pathlib.Path(__file__).parent / "templates")
 
     parser = argparse.ArgumentParser(description=__doc__)
