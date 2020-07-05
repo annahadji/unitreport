@@ -20,7 +20,7 @@ def plotting(
     """Decorator for tests that generate matplotlib figures.
 
     Args:
-        func:
+        func: function passed to decorator
         figsize: [description]. Defaults to (8, 6).
     """
 
@@ -39,6 +39,29 @@ def plotting(
         }
         logger.debug(
             "Ran %s with buffer size %i.", func.__name__, len(buffer.getvalue())
+        )
+
+    return wrapper
+
+
+def tabling(func: Callable[..., str]):
+    """Decorator for tests that return (html) tables
+
+    Args:
+        func: function passed to decorator
+    """
+
+    def wrapper(*args, **kwargs):
+        # call test case, if fails will raise error and table wont be saved
+        html_table = func(*args, **kwargs)
+        # save table and description to buffer
+        FIGURES[func.__name__] = {
+            "type": "table",
+            "content": html_table,
+            "description": func.__doc__ or "",
+        }
+        logger.debug(
+            "Ran %s with html string length %i", func.__name__, len(html_table)
         )
 
     return wrapper

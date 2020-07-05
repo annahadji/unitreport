@@ -1,4 +1,4 @@
-"""Short example use case of unitreport library."""
+"""Short example use case of generating plots using unitreport library."""
 import unittest
 
 import seaborn as sns
@@ -7,8 +7,8 @@ import pandas as pd
 import unitreport
 
 
-class TestExample(unittest.TestCase):
-    """An example test suite to generate a report using unitreport."""
+class TestPlot(unittest.TestCase):
+    """An example test suite producing plots to generate a report using unitreport."""
 
     dataset: pd.DataFrame = None
 
