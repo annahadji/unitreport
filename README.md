@@ -1,4 +1,4 @@
-# :page_facing_up: unitreport
+# :page_facing_up: unitreport ![](https://github.com/annahadji/unitreport/workflows/Publish%20to%20PyPI/badge.svg) ![PyPI](https://img.shields.io/pypi/v/unitreport)
 
 UnitReport is a small unittest-based tool for generating single page html reports in Python.
 The reports can include matplotlib figures and html tables.
