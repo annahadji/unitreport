@@ -79,6 +79,9 @@ optional arguments:
                         index.html and main.css
 ```
 
+There are template `index.html` and `main.css` files which will be used by default to generate the style of the report.
+You can also specify a path to your own templates using `--templates_dir`, where the html Jinja2 template can expect to receive `date` (today's date), and `figures`, a dictionary with test function names as keys mapped to values of `type` (table or plot), `content` (svg or html table) and `description` (test function's docstring).
+
 ## Built With
 
 - [unittest](https://docs.python.org/3/library/unittest.html) - underlying testing framework
