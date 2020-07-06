@@ -22,21 +22,12 @@
             }}
           </figcaption>
         </figure>
-        {% endfor %}
-        {% for fname, figure in figures.items() if figure.type == "table" %}
+        {% endfor %} {% for fname, figure in figures.items() if figure.type ==
+        "table" %}
         <figure>
           {{ figure.content | safe }}
           <figcaption>
             <span>Table {{loop.index}}. </span>{{ figure.description | markdown
-            }}
-          </figcaption>
-        </figure>
-        {% endfor %}
-        {% for fname, figure in figures.items() if figure.type == "html" %}
-        <figure>
-          {{ figure.content | safe }}
-          <figcaption>
-            <span>Generic {{loop.index}}. </span>{{ figure.description | markdown
             }}
           </figcaption>
         </figure>
