@@ -88,6 +88,22 @@ optional arguments:
 There are template `index.html` and `main.css` files which will be used by default to generate the style of the report.
 You can also specify a path to your own templates using `--templates_dir`, where the html Jinja2 template can expect to receive `date` (today's date), and `figures`, a dictionary with test function names as keys mapped to values of `type` (table or plot), `content` (svg or html table) and `description` (test function's docstring).
 
+You can also invoke unitreport from a Python script using the library's `main()` (runs tests and generates report), `discover_and_run()` (only run tests) and `generate_report()` (only generate report) functions.
+These utilise the default values for the above parameters if not specified by the user, and `generate_report()` uses the global FIGURES dictionary generated from the tests if not passed. For more details on what they do, you can check the source code.
+
+```python
+import unitreport
+
+# result is a unittest.TestResult which you can access things such as result.errors
+result = unitreport.discover_and_run()
+print(result) # <unittest.runner.TextTestResult run=3 errors=0 failures=0>
+# html_report is a string containing the generated report
+html_report = unitreport.generate_report()
+
+# same as above, raises assertion error if there are errors in tests or no tests found.
+result, html_report = unitreport.main()
+```
+
 ## Built With
 
 - [unittest](https://docs.python.org/3/library/unittest.html) - underlying testing framework
