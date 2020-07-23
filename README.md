@@ -69,14 +69,20 @@ For extra parameters you can run the following,
 ```
 python3 -m unitreport -h
 
-usage: __main__.py [-h] [--pattern PATTERN] [--templates_dir TEMPLATES_DIR]
+usage: __main__.py [-h] [--tests_dir TESTS_DIR] [--pattern PATTERN]
+                   [--templates_dir TEMPLATES_DIR] [--output_file OUTPUT_FILE]
 
 optional arguments:
   -h, --help            show this help message and exit
-  --pattern PATTERN     File patterns to discover test cases in.
+  --tests_dir TESTS_DIR
+                        Path to test files. (default: .)
+  --pattern PATTERN     File patterns to discover test cases in. (default:
+                        test*.py)
   --templates_dir TEMPLATES_DIR
                         Path to jinja2 templates directory including
-                        index.html and main.css
+                        index.html and main.css. (default: templates)
+  --output_file OUTPUT_FILE
+                        Output path including name. (default: report.html)
 ```
 
 There are template `index.html` and `main.css` files which will be used by default to generate the style of the report.
@@ -86,3 +92,5 @@ You can also specify a path to your own templates using `--templates_dir`, where
 
 - [unittest](https://docs.python.org/3/library/unittest.html) - underlying testing framework
 - [Jinja2](https://jinja.palletsprojects.com/en/2.11.x/) - rendering and generating the report
+- [matplotlib](https://matplotlib.org/) - plotting library
+- [Markdown](https://python-markdown.github.io/) - Python markdown library for markdown captions
