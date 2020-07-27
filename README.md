@@ -80,7 +80,7 @@ optional arguments:
                         test*.py)
   --templates_dir TEMPLATES_DIR
                         Path to jinja2 templates directory including
-                        index.html and main.css. (default: templates)
+                        index.html and main.css. (default: (unitreport) templates)
   --output_file OUTPUT_FILE
                         Output path including name. (default: report.html)
 ```
@@ -95,13 +95,14 @@ These utilise the default values for the above parameters if not specified by th
 import unitreport
 
 # result is a unittest.TestResult which you can access things such as result.errors
-result = unitreport.discover_and_run()
+result, figs = unitreport.discover_and_run()
 print(result) # <unittest.runner.TextTestResult run=3 errors=0 failures=0>
+print(figs) # Dict with test function names as keys mapped to 'type', 'content', and 'description'
 # html_report is a string containing the generated report
 html_report = unitreport.generate_report()
 
-# same as above, raises assertion error if there are errors in tests or no tests found.
-result, html_report = unitreport.main()
+# same as above, raises assertion error if there are errors in tests or no tests found
+result, figs, html_report = unitreport.main()
 ```
 
 ## Built With

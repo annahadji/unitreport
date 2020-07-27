@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 
 def discover_and_run(
     tests_dir: str = ".", pattern: str = "test*.py",
-) -> unittest.TestResult:
+) -> Tuple[unittest.TestResult, Dict[str, Dict[str, str]]]:
     """Discover unittests and run them.
 
     Args:
@@ -23,14 +23,15 @@ def discover_and_run(
         pattern (str, optional): [description]. Defaults to "test*.py".
 
     Returns:
-        unittest.TestResult: Result of tests (returns errors, failures, skipped tests)
+        Tuple[unittest.TestResult, Dict[str, Dict[str, str]]]: Result of tests (returns errors,
+            failures, skipped tests), global FIGURES dictionary generated from tests.
     """
     # discover all of the test cases and run them
     tests = unittest.defaultTestLoader.discover(tests_dir, pattern=pattern)
     runner = unittest.TextTestRunner()
     result = runner.run(tests)  # result returns errors, failures, skipped tests
     logger.debug("Ran %i tests", result.testsRun)
-    return result
+    return (result, FIGURES)
 
 
 def generate_report(
@@ -70,7 +71,7 @@ def main(
     pattern: str = "test*.py",
     templates_dir: str = str(pathlib.Path(__file__).parent / "templates"),
     output_file: str = "report.html",
-) -> Tuple[unittest.TestResult, str]:
+) -> Tuple[unittest.TestResult, Dict[str, Dict[str, str]], str]:
     """Discovers and runs test cases followed by generating the report.
 
     Args:
@@ -81,11 +82,12 @@ def main(
         output_file (str, optional): Output path including name. Defaults to "report.html".
 
     Returns:
-        Tuple[unittest.TestResult, str]: Result of tests, and the generated html report.
+        Tuple[unittest.TestResult, Dict[str, Dict[str, str]], str]: Test results, global FIGURES
+            dictionary generated from tests and generated html report.
     """
-    result = discover_and_run(tests_dir=tests_dir, pattern=pattern)
+    result, figs = discover_and_run(tests_dir=tests_dir, pattern=pattern)
     assert (
         result.testsRun and not result.errors
     ), "Report cannot be generated: errors raised whilst running tests or no tests ran."
     html = generate_report(templates_dir=templates_dir, output_file=output_file)
-    return (result, html)
+    return (result, figs, html)
