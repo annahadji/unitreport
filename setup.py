@@ -6,7 +6,7 @@ with open("README.md", "r") as f:
 
 setuptools.setup(
     name="unitreport",
-    version="0.1.0",
+    version="0.1.1",
     author="annahadji",
     author_email="annahadji@users.noreply.github.com",
     description="A small unittest-based tool for generating single page html reports in Python.",
